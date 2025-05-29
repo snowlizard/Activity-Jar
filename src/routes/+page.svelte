@@ -1,6 +1,7 @@
 <script lang="ts">
     import "../app.css";
     import jar from "$lib/assets/jar.png";
+    import banner from "$lib/assets/banner.png";
 
     let activities:string[] = [];
     let randomActivity: string = "Get freaky";
@@ -23,7 +24,7 @@
     // ----- CSS STYLE VARIABLES
     const mainContainer: string = "w-screen h-screen flex flex-wrap justify-center text-[#fff]";
     
-    const jarContainer: string = "flex justify-center items-center grow bg-[#f4b5eb]";
+    const jarContainer: string = "h-full flex flex-col justify-center items-center grow bg-[#f4b5eb]";
     const rndBtnStle: string = "absolute mt-25 cursor-pointer transition-all bg-[#8260a2] px-6 py-2 " +
         "rounded-lg border-[#3c383e] border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] " + 
         "hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
@@ -38,9 +39,12 @@
 
 <div class={mainContainer} >
     <div class={jarContainer}>
-        <img src={jar} alt="Jar of activties"/>
-        <span class="absolute font-sans text-2xl" >{randomActivity}</span>
-        <button class={rndBtnStle} on:click={getActivity}>Generate Activity</button>
+        <img class="w-2/3" src={banner} alt="date nite" />
+        <div class="w-2/3 flex flex-col justify-center items-center">
+            <img src={jar} alt="Jar of activties"/>
+            <span class="absolute font-sans text-2xl" >{randomActivity}</span>
+            <button class={rndBtnStle} on:click={getActivity}>Generate Activity</button>
+        </div>
     </div>
 
     <div class={activityContainer}>
