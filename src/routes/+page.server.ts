@@ -1,8 +1,5 @@
-import { activityJar } from "$db/activity.jar.js";
-import type {PageServerLoad} from "./$types.js"; 
+import sql from "$db/postgres.js";
 
-export const load: PageServerLoad = async function() {
-    const data = await activityJar.find({name: "activities"}).toArray();
+const activitiesData = await sql`SELECT * FROM "Activities";`
 
-    return data;
-}
+console.log(activitiesData);
