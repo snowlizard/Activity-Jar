@@ -1,5 +1,9 @@
-import sql from "$db/postgres.js";
+import sql from "../hooks.server.js";
 
-const activitiesData = await sql`SELECT * FROM "Activities";`
+export const load = async () => {
+    let activities = await sql`SELECT data FROM "Activity-Jar" WHERE "keyname" = 'Activities';`;
 
-console.log(activitiesData);
+    return {
+        activityData: activities[0].data.split(',')
+    };
+}

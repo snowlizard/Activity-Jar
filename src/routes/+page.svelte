@@ -2,9 +2,12 @@
     import "../app.css";
     import jar from "$lib/assets/jar.png";
     import banner from "$lib/assets/banner.png";
+    export let data;
+    let { activityData } = data;
 
-    let activities:string[] = [];
-    let randomActivity: string = "Get freaky";
+
+    let activities:string[] = activityData;
+    let randomActivity: string = activities[0];
 
     let addActivity = (event: any) => {
         if(event.key.toLowerCase() == "enter"){
