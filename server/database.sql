@@ -1,0 +1,6 @@
+CREATE DATABASE IF NOT EXISTS homelab;
+
+CREATE TABLE IF NOT EXISTS Activities(
+    index INTEGER PRIMARY KEY NOT NULL,
+    activity TEXT
+)
