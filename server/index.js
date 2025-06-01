@@ -9,7 +9,18 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Update Activities
+// GET Activities
+app.get("/activities", async(req, res) => {
+    try {
+        const data = await pool.query("SELECT * FROM Activities");
+        let temp = res.json(data.rows);
+        console.log(temp);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+// INSERT Activities
 app.post("/activities", async (req, res) => {
     try {
         const activities = req.body.payload;
@@ -21,17 +32,16 @@ app.post("/activities", async (req, res) => {
     }
 });
 
-// GET Activities
-app.get("/activities", async(req, res) => {
+// DELETE
+app.delete("/activity/:id", async (req, res) => {
     try {
-        const data = await pool.query("SELECT * FROM Activities");
-        let temp = res.json(data.rows);
-        console.log(temp);
+        const { index } = req.params;
+        const deleteActivity = await pool.query("DELETE FROM Activities WHERE index = $1",[index]);
+        res.json("Activity removed successfully");
     } catch (error) {
         console.log(error.message);
     }
 });
-
 
 app.listen(PORT, () => {
     console.log("Server is listening on port: " + PORT);
