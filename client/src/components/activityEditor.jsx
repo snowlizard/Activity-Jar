@@ -1,6 +1,7 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addActivity, removeActivity } from "../features/activitiesSlice";
+import { act, useEffect } from "react";
+import { addActivity, removeActivity, getActivityData } from "../features/activitiesSlice";
+
 
 export const ActivityEditor = () => {
     const activityContainer = "w-1/3 h-full p-12 overflow-scroll flex flex-col grow justify-start self-start items-center bg-[#eeeeee]";
@@ -9,6 +10,10 @@ export const ActivityEditor = () => {
     
 	const activities = useSelector((state) => state.activities.value);
     const dispatch = useDispatch();
+
+    useEffect(()=> {
+        dispatch(getActivityData());
+    });
 
     const handleAdd = (event) => {
         if(event.key === "Enter"){
@@ -22,19 +27,18 @@ export const ActivityEditor = () => {
         dispatch(removeActivity(index));
     }
 
-
     return (
     <div className={activityContainer}>
         <input onKeyDown={handleAdd} className={activityInput} type="text" placeholder="add activty. . ."/>
         {
-            activities.map((activity, index) => 
+            activities != null ? activities.map((item) => 
                 <div className={activityCard}>
-                    <span>{activity}</span>
+                    <span>{item.activity}</span>
                     <button onClick={handleRemoval} type="button" className="w-8 h-2/3 hover:brightness-150">
-                        <img id={index.toString()} className="w-full h-full" src="https://img.icons8.com/stickers/100/delete-forever.png" alt="delete-forever"/>
+                        <img id={item.index} className="w-full h-full" src="https://img.icons8.com/stickers/100/delete-forever.png" alt="delete-forever"/>
                     </button>
                 </div>
-            )
+            ) : ""
         }
     </div>
     );

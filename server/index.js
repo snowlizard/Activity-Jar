@@ -13,8 +13,7 @@ app.use(express.json());
 app.get("/activities", async(req, res) => {
     try {
         const data = await pool.query("SELECT * FROM Activities");
-        let temp = res.json(data.rows);
-        console.log(temp);
+        res.json(data.rows);
     } catch (error) {
         console.log(error);
     }
@@ -26,6 +25,7 @@ app.post("/activities", async (req, res) => {
         const activities = req.body.payload;
         for(index in activities){
             const newActivity = await pool.query("INSERT INTO Activities VALUES($1, $2)", [index, activities[index]]);
+            res.json("Activity inserted successfully!");
         }
     } catch (err) {
         console.log(err);
