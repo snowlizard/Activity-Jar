@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { act, useEffect } from "react";
-import { addActivity, removeActivity, getActivityData } from "../features/activitiesSlice";
+import { useEffect } from "react";
+import { removeActivity, getActivityData, insertActivity } from "../features/activitiesSlice";
 
 
 export const ActivityEditor = () => {
@@ -17,7 +17,8 @@ export const ActivityEditor = () => {
 
     const handleAdd = (event) => {
         if(event.key === "Enter"){
-            dispatch(addActivity(event.target.value));
+            let status = dispatch(insertActivity(event.target.value));
+            console.log(status);
             event.target.value = "";
         }
     }

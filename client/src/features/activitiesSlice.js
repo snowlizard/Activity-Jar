@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, asyncThunkCreator } from "@reduxjs/toolkit";
 
 export const getActivityData = createAsyncThunk(
     "activities/get",
@@ -15,15 +15,33 @@ export const getActivityData = createAsyncThunk(
 
 export const insertActivity = createAsyncThunk(
     "activities/insert",
-    async (temp, thunkAPI) => {
+    async (value, thunkAPI) => {
         try {
             const response = await fetch("http://localhost:5000/activities", {
                 method: "POST",
-                headers: { "Content-Type:": "application/json" },
-                body: JSON.stringify(activity)
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ "activity": value })
             });
+            let status = await response.json();
+            return status;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+)
 
-            return response.status;
+export const removeActivity = createAsyncThunk(
+    "activities/remove",
+    async (value, thunkAPI) => {
+        try {
+            const response = await fetch("http://localhost:5000/activity/" + value, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ "index": value })
+            });
+            const data = await response.json();
+
+            return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }
@@ -36,29 +54,23 @@ export const activitiesSlice = createSlice({
         value: null,
     },
 
-    reducers: {
-        addActivity: async (state, action) => {
-            const activity = {
-                index: Math.floor(Math.random() * 10000),
-                activity: action.payload
-            }
-            state.value = [...state.value, activity];
-        },
-        
-        removeActivity: (state, action) => {
-            state.value = state.value.filter((activity) => {
-                return activity.index != action.payload;
-            });
-        }
-    },
+    reducers: {},
 
     extraReducers: (builder) => {
         builder.addCase(getActivityData.fulfilled, (state, action) => {
             state.value = action.payload;
         });
+
+        builder.addCase(insertActivity.fulfilled, (state, action) => {
+            console.log("Hello world" + action);
+        });
+
+        builder.addCase(removeActivity.fulfilled, (state, action) => {
+
+        });
     }
 
 });
 
-export const { addActivity, removeActivity } = activitiesSlice.actions;
+export const { } = activitiesSlice.actions;
 export default activitiesSlice.reducer;

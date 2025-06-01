@@ -23,6 +23,7 @@ app.get("/activities", async(req, res) => {
 app.post("/activities", async (req, res) => {
     try {
         const activity = req.body.activity;
+        console.log(req.body);
         const newActivity = await pool.query('INSERT INTO "Activities" (activity) VALUES ($1);', [activity]);
         res.json("Activity inserted successfully!");
     } catch (err) {
