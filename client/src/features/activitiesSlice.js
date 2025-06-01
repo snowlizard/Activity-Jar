@@ -21,11 +21,16 @@ export const activitiesSlice = createSlice({
 
     reducers: {
         addActivity: (state, action) => {
-            state.value = [...state.value, action.payload]
+            state.value = [...state.value,{
+                index: state.value.length,
+                activity: action.payload
+            }];
         },
         
         removeActivity: (state, action) => {
-            state.value = state.value.filter((activity, index) => index != action.payload);
+            state.value = state.value.filter((activity) => {
+                return activity.index != action.payload;
+            });
         }
     },
 

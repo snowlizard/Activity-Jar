@@ -13,7 +13,7 @@ export const ActivityEditor = () => {
 
     useEffect(()=> {
         dispatch(getActivityData());
-    });
+    }, []);
 
     const handleAdd = (event) => {
         if(event.key === "Enter"){
@@ -23,6 +23,7 @@ export const ActivityEditor = () => {
     }
 
     const handleRemoval = (event) => {
+        event.preventDefault();
         let index = parseInt(event.target.id);
         dispatch(removeActivity(index));
     }
