@@ -33,7 +33,7 @@ export const ActivityEditor = () => {
         <input onKeyDown={handleAdd} className={activityInput} type="text" placeholder="add activty. . ."/>
         {
             activities != null ? activities.map((item) => 
-                <div className={activityCard}>
+                <div className={activityCard} key={item.index + "-"+ item.activty} >
                     <span>{item.activity}</span>
                     <button onClick={handleRemoval} type="button" className="w-8 h-2/3 hover:brightness-150">
                         <img id={item.index} className="w-full h-full" src="https://img.icons8.com/stickers/100/delete-forever.png" alt="delete-forever"/>

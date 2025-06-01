@@ -12,7 +12,7 @@ app.use(express.json());
 // GET Activities
 app.get("/activities", async(req, res) => {
     try {
-        const data = await pool.query("SELECT * FROM Activities");
+        const data = await pool.query('SELECT * FROM "Activities"');
         res.json(data.rows);
     } catch (error) {
         console.log(error);
@@ -22,11 +22,9 @@ app.get("/activities", async(req, res) => {
 // INSERT Activities
 app.post("/activities", async (req, res) => {
     try {
-        const activities = req.body.payload;
-        for(index in activities){
-            const newActivity = await pool.query("INSERT INTO Activities VALUES($1, $2)", [index, activities[index]]);
-            res.json("Activity inserted successfully!");
-        }
+        const activity = req.body.activity;
+        const newActivity = await pool.query('INSERT INTO "Activities" (activity) VALUES ($1);', [activity]);
+        res.json("Activity inserted successfully!");
     } catch (err) {
         console.log(err);
     }
@@ -35,9 +33,9 @@ app.post("/activities", async (req, res) => {
 // DELETE
 app.delete("/activity/:id", async (req, res) => {
     try {
-        const { index } = req.params;
-        const deleteActivity = await pool.query("DELETE FROM Activities WHERE index = $1",[index]);
-        res.json("Activity removed successfully");
+        const index = req.params.id;
+        const deleteActivity = await pool.query('DELETE FROM "Activities" WHERE index = $1', [index]);
+        res.json(deleteActivity);
     } catch (error) {
         console.log(error.message);
     }

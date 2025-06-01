@@ -13,6 +13,23 @@ export const getActivityData = createAsyncThunk(
     }
 )
 
+export const insertActivity = createAsyncThunk(
+    "activities/insert",
+    async (temp, thunkAPI) => {
+        try {
+            const response = await fetch("http://localhost:5000/activities", {
+                method: "POST",
+                headers: { "Content-Type:": "application/json" },
+                body: JSON.stringify(activity)
+            });
+
+            return response.status;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+)
+
 export const activitiesSlice = createSlice({
     name: "activities",
     initialState: {
@@ -20,11 +37,12 @@ export const activitiesSlice = createSlice({
     },
 
     reducers: {
-        addActivity: (state, action) => {
-            state.value = [...state.value,{
-                index: state.value.length,
+        addActivity: async (state, action) => {
+            const activity = {
+                index: Math.floor(Math.random() * 10000),
                 activity: action.payload
-            }];
+            }
+            state.value = [...state.value, activity];
         },
         
         removeActivity: (state, action) => {
