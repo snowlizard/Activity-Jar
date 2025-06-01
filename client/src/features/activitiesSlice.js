@@ -22,6 +22,7 @@ export const insertActivity = createAsyncThunk(
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ "activity": value })
             });
+
             let status = await response.json();
             return status;
         } catch (error) {
@@ -36,11 +37,10 @@ export const removeActivity = createAsyncThunk(
         try {
             const response = await fetch("http://localhost:5000/activity/" + value, {
                 method: "DELETE",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ "index": value })
+                headers: { "Content-Type": "application/json" }
             });
-            const data = await response.json();
 
+            const data = await response.json();
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -62,7 +62,7 @@ export const activitiesSlice = createSlice({
         });
 
         builder.addCase(insertActivity.fulfilled, (state, action) => {
-            console.log("Hello world" + action);
+            state.value = state.value;
         });
 
         builder.addCase(removeActivity.fulfilled, (state, action) => {

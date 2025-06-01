@@ -17,16 +17,16 @@ export const ActivityEditor = () => {
 
     const handleAdd = (event) => {
         if(event.key === "Enter"){
-            let status = dispatch(insertActivity(event.target.value));
-            console.log(status);
+            dispatch(insertActivity(event.target.value))
+                .then((res) => dispatch(getActivityData()))
+                .catch((error) => { console.log(error)});
             event.target.value = "";
         }
     }
 
     const handleRemoval = (event) => {
-        event.preventDefault();
-        let index = parseInt(event.target.id);
-        dispatch(removeActivity(index));
+        dispatch(removeActivity(event.target.id));
+        dispatch(getActivityData());
     }
 
     return (
