@@ -7,10 +7,12 @@ require('dotenv').config();
 const PORT = 5000;
 
 app.use(cors());
+
 app.use(express.json());
+app.options('/activities', cors());
 
 // GET Activities
-app.get("/activities", async(req, res) => {
+app.get("/activities", cors(), async(req, res) => {
     try {
         const data = await pool.query('SELECT * FROM "Activities"');
         res.json(data.rows);
@@ -20,7 +22,8 @@ app.get("/activities", async(req, res) => {
 });
 
 // INSERT Activities
-app.post("/activities", async (req, res) => {
+app.post("/activities", cors(), async (req, res) => {
+        res.set('Access-Control-Allow-Origin', '*');
     try {
         const activity = req.body.activity;
         console.log(req.body);
@@ -32,7 +35,8 @@ app.post("/activities", async (req, res) => {
 });
 
 // DELETE
-app.delete("/activity/:id", async (req, res) => {
+app.delete("/activity/:id", cors(), async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const index = req.params.id;
         const deleteActivity = await pool.query('DELETE FROM "Activities" WHERE index = $1', [index]);
@@ -42,6 +46,6 @@ app.delete("/activity/:id", async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "192.168.1.9", () => {
     console.log("Server is listening on port: " + PORT);
 });

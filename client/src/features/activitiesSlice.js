@@ -4,7 +4,7 @@ export const getActivityData = createAsyncThunk(
     "activities/get",
     async (temp, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:5000/activities");
+            const response = await fetch("http://192.168.1.9:5000/activities", {mode: 'cors'});
             const data = await response.json();
             return data;
         } catch (error){
@@ -17,10 +17,11 @@ export const insertActivity = createAsyncThunk(
     "activities/insert",
     async (value, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:5000/activities", {
+            const response = await fetch("http://192.168.1.9:5000/activities", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ "activity": value })
+                body: JSON.stringify({ "activity": value }),
+                mode: 'cors'
             });
 
             let status = await response.json();
@@ -35,9 +36,10 @@ export const removeActivity = createAsyncThunk(
     "activities/remove",
     async (value, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:5000/activity/" + value, {
+            const response = await fetch("http://192.168.1.9:5000/activity/" + value, {
                 method: "DELETE",
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                mode: 'cors'
             });
 
             const data = await response.json();
