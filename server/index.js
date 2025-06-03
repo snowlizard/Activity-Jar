@@ -5,7 +5,7 @@ const pool = require("./db");
 require('dotenv').config();
 
 const PORT = 5000;
-const IP = "192.168.1.166";
+const IP = process.env.SERVER_IP;
 
 app.use(cors());
 

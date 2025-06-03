@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const IP = "http://192.168.1.166:5000"
+const IP = "http://192.168.1.9:5000";
 
 export const getActivityData = createAsyncThunk(
     "activities/get",
