@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { removeActivity, getActivityData, insertActivity } from "../features/activitiesSlice";
-import { listContainer, listCard, cardButton } from "../css/index.css";
-import { inputMain, inputChild, inputWrapper, inputElement } from '../css/index.css';
+import { listContainer, listCard, cardButton,
+    inputMain, inputChild, inputWrapper, inputElement } from '../css/activityList';
 import { activityContainer } from "../css/index.css";
 
 
-export const ActivityEditor = () => {
+export const Activities = () => {
 	const activities = useSelector((state) => state.activities.value);
     const dispatch = useDispatch();
 

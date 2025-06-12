@@ -1,12 +1,11 @@
-import { Jar } from './components/jar';
-import { mainContainer } from './css/index.css';
-import { ActivityEditor } from './components/activityEditor';
+import { Jar } from './pages/jar';
+import Menu from './components/Menu';
 
 const App = () => {
 	return (
-		<div className={mainContainer}>
+		<div>
+			<Menu />
 			<Jar />
-			<ActivityEditor />
 		</div>
 	);
 }

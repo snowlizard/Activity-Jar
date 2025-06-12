@@ -1,2 +1,11 @@
 @import "tailwindcss";
 
+:root{
+    --kuromi-black: #363232;
+    --kuromi-mid-black: #565656;
+    --kuromi-lite-black: #6b6b6b;
+    --kuromi-dark-pink: #eea1e3;
+    --kuromi-pink: #f4b5eb;
+    --kuromi-purple: #8260a2;
+    --kuromi-gray: #eeeeee;
+}   

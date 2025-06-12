@@ -1,7 +1,7 @@
 import jar from '../assets/jar.png';
 import banner from '../assets/banner.png';
-import { jarContainer, jarBtn, bannerContainer, bannerImg } from '../css/index.css';
-import {jarWrapper, jarImg, jarText, jarImgDiv} from '../css/index.css';
+import { jarContainer, bannerContainer, bannerImg,
+    jarWrapper, jarImgDiv, jarImg, jarText, jarBtn } from '../css/jar';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
