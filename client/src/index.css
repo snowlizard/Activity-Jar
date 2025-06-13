@@ -8,4 +8,13 @@
     --kuromi-pink: #f4b5eb;
     --kuromi-purple: #8260a2;
     --kuromi-gray: #eeeeee;
-}   
+}
+
+#root{
+    background: var(--kuromi-pink);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

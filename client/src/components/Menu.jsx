@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router';
+import { Link } from 'react-router';
 import '../css/menu.css';
 
 export default () => {
@@ -20,7 +20,9 @@ export default () => {
             {
                 routes.map(route => (
                     <li key={"li-" + route.label } >
-                        <NavLink to={route.to}>{route.label}</NavLink>
+                        <Link to={route.to}>
+                            <label htmlFor='menuCheckbox' >{route.label}</label>
+                        </Link>
                     </li>
                 ))
             }

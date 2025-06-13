@@ -1,13 +1,10 @@
 #menuToggle
 {
   display: block;
-  /* You can also use relative/absolute here if you want to stay on the top */
   position: fixed;
   top: 50px;
   left: 50px;
-  
   z-index: 1;
-  
   -webkit-user-select: none;
   user-select: none;
 }
@@ -33,18 +30,13 @@
   position: absolute;
   top: -7px;
   left: -5px;
-  
   cursor: pointer;
-  
   opacity: 0; /* hide this */
   z-index: 2; /* and place it over the hamburger */
-  
   -webkit-touch-callout: none;
 }
 
-/*
- * Just a quick hamburger
- */
+
 #menuToggle span
 {
   display: block;
@@ -119,6 +111,7 @@
   box-sizing: border-box;
   overflow-y: auto;
   background: var(--kuromi-gray);
+  border-radius: 0 0 8px 0;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */

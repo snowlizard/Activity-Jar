@@ -6,6 +6,7 @@ import store from './store.js'
 import './index.css'
 import Menu from './components/Menu.jsx';
 import { Jar } from './pages/index.jsx';
+import { Activities } from  './pages/activities.jsx';
 
 const root = document.getElementById('root');
 
@@ -14,8 +15,8 @@ ReactDOM.createRoot(root).render(
     <BrowserRouter>
         <Menu />
         <Routes>
-          <Route path='/' element={<Jar />} />
-
+          <Route path='/' element={ <Jar /> } />
+          <Route path='/activities' element={ <Activities /> } />
         </Routes>
     </BrowserRouter>
   </Provider>

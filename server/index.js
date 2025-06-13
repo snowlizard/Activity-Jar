@@ -47,6 +47,6 @@ app.delete("/activity/:id", cors(), async (req, res) => {
     }
 });
 
-app.listen(PORT, IP, () => {
+app.listen(PORT, () => {
     console.log("Server is listening on port: " + PORT);
 });

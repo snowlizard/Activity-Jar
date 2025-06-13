@@ -1,10 +1,9 @@
-const jarContainer = "col-span-3 bg-[#f4b5eb] overflow-hidden";
+const jarContainer = "flex justify-center items-center flex-col h-full w-full overflow-scroll";
 
-const bannerContainer = "h-50 flex justify-center items-center";
+const bannerContainer = "h-1/4 p-4";
 const bannerImg = "h-full";
 
-const jarWrapper = "flex grow justify-center items-center";
-const jarImgDiv = "h-2/3";
+const jarWrapper = "flex justify-center items-center w-full h-2/3";
 const jarImg = "h-full";
 const jarText = "absolute font-sans text-2xl";
 
@@ -14,4 +13,4 @@ const jarBtn = `absolute mt-25 cursor-pointer transition-all bg-[#8260a2] px-6 p
             hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]`;
 
 export { jarContainer, bannerContainer , bannerImg,
-    jarWrapper, jarImgDiv, jarImg, jarText, jarBtn };
+    jarWrapper, jarImg, jarText, jarBtn };

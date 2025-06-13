@@ -1,16 +1,18 @@
 import jar from '../assets/jar.png';
 import banner from '../assets/banner.png';
 import { jarContainer, bannerContainer, bannerImg,
-    jarWrapper, jarImgDiv, jarImg, jarText, jarBtn } from '../css/jar';
+    jarWrapper, jarImg, jarText, jarBtn } from '../css/jar';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { act, useState } from 'react';
 
 export const Jar = () => {
     const activities = useSelector((state) => state.activities.value);
     const [activity, setActivity] = useState("");
 
     const getRandomIndex = () => {
-        setActivity(activities[Math.floor(Math.random() * activities.length)]);
+        if(activities){
+            setActivity(activities[Math.floor(Math.random() * activities.length)]);
+        }
     }
     
     return (
@@ -20,7 +22,7 @@ export const Jar = () => {
             </div>
 
             <div className={jarWrapper}>
-                <div className={jarImgDiv}>
+                <div>
                     <img className={jarImg} src={jar} alt="Jar of activties"/>
                 </div>
                 <span className={jarText} >
