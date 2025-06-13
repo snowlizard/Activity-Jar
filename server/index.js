@@ -8,12 +8,10 @@ const PORT = 5000;
 const IP = process.env.SERVER_IP;
 
 app.use(cors());
-
 app.use(express.json());
-app.options('/activities', cors());
 
 // GET Activities
-app.get("/activities", cors(), async(req, res) => {
+app.get("/activities", async(req, res) => {
     try {
         const data = await pool.query('SELECT * FROM "Activities"');
         res.json(data.rows);
@@ -23,8 +21,7 @@ app.get("/activities", cors(), async(req, res) => {
 });
 
 // INSERT Activities
-app.post("/activities", cors(), async (req, res) => {
-        res.set('Access-Control-Allow-Origin', '*');
+app.post("/activities", async (req, res) => {
     try {
         const activity = req.body.activity;
         console.log(req.body);
@@ -36,8 +33,7 @@ app.post("/activities", cors(), async (req, res) => {
 });
 
 // DELETE
-app.delete("/activity/:id", cors(), async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
+app.delete("/activity/:id", async (req, res) => {
     try {
         const index = req.params.id;
         const deleteActivity = await pool.query('DELETE FROM "Activities" WHERE index = $1', [index]);
