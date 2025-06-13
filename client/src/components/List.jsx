@@ -17,7 +17,8 @@ export default () => {
     }
 
     return (
-        <div className="w-full h-2/3 p-6 bg-[var(--kuromi-gray)] mt-5 rounded-lg shadow-xl/30 overflow-scroll">
+        <div className="w-full h-2/3 p-6 bg-[var(--kuromi-gray)] mt-5 rounded-lg shadow-xl/30 overflow-scroll"
+            style={{scrollbarWidth: "none", msOverflowStyle: "none"}}>
             {
                 activities != null ? activities.map((item) => 
                     <div className="w-full h-15 p-2 mb-2 flex justify-between items-center shadow-lg text-[#fff] bg-[var(--kuromi-purple)] hover:bg-[var(--kuromi-black)]" key={item.index + "-"+ item.activty} >
